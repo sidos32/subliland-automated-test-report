@@ -20,7 +20,7 @@ public class RegisterPageTest {
         System.out.println("Starting test with name:" + testInfo.getDisplayName());
         System.out.println("Starting chrome browser");
         ChromeOptions options = new ChromeOptions();
-        options.setHeadless(false);
+        options.setHeadless(true);
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         System.out.println("Navigating to:" + BASE_URL);
