@@ -6,7 +6,9 @@
   [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/subliland.de.svg)](https://subliland.de)
   
  
-  [![website - subliland](https://img.shields.io/badge/website-subliland-2ea44f?style=for-the-badge)](https://subliland.de)
+
+ [![test report - results](https://img.shields.io/badge/test_report-results-2ea44f?style=for-the-badge)](https://github.com/sidos32/subliland-automated-test-report/runs/5254534719?check_suite_focus=true)
+ [![website - subliland](https://img.shields.io/badge/website-subliland-2ea44f?style=for-the-badge)](https://subliland.de)
 </div>
 
 ---
