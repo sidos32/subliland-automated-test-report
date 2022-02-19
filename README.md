@@ -18,9 +18,11 @@
   
   - <a href="https://www.jetbrains.com/idea/">InteliJ</a>
   - <a href="https://desktop.github.com/">GitHub Desktop</a>
+  - <a href="https://github.com/marketplace/actions/test-reporter">Test Reporter</a>
   - <a href="https://maven.apache.org/">Maven</a>
   - <a href="https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java">Selenium</a>
   - <a href="https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api">JUnit</a>
   - <a href="https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager">Web Driver Manager</a>
   - <a href="https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin">Maven Surefire Plugin</a>
+
  
