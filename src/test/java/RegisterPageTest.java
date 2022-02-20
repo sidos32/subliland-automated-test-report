@@ -22,7 +22,6 @@ public class RegisterPageTest {
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(true);
         driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
         System.out.println("Navigating to:" + BASE_URL);
         driver.navigate().to(BASE_URL);
     }
@@ -34,13 +33,13 @@ public class RegisterPageTest {
   }
 
     @Test
-    @DisplayName("Register with valid credentials")
+    @DisplayName("Can register user with valid credentials")
     void registerWithValidCredentials() {
         driver.findElement(By.cssSelector(".as-js-optin.as-oil__btn.as-oil__btn-optin")).click(); //Accept cookies
         driver.findElement(By.cssSelector(".db_account [href]")).click(); // My profile click;
         driver.findElement(By.cssSelector(".row.row-login .btn.btn-block.btn-default")).click(); //Register button click
         WebElement registerHeadline = driver.findElement(By.cssSelector("h1"));
-        Assertions.assertEquals("Ein Kundenkonto erstellen", registerHeadline.getText()); //Checks if H1 is correct
+        Assertions.assertEquals("Ein Kundenkonto erstellen", registerHeadline.getText()); //Verify H1
 
         driver.findElement(By.id("firstname")).sendKeys("John"); //First name field
         driver.findElement(By.id("lastname")).sendKeys("Johnson"); //last name field
@@ -62,13 +61,13 @@ public class RegisterPageTest {
     }
 
     @Test
-    @DisplayName("Register with invalid credentials")
+    @DisplayName("Register user with invalid credentials")
     void registerWithInvalidCredentials() {
         driver.findElement(By.cssSelector(".as-js-optin.as-oil__btn.as-oil__btn-optin")).click(); //Accept cookies
         driver.findElement(By.cssSelector(".db_account [href]")).click(); // My profile click;
         driver.findElement(By.cssSelector(".row.row-login .btn.btn-block.btn-default")).click(); //Register button click
         WebElement registerHeadline = driver.findElement(By.cssSelector("h1"));
-        Assertions.assertEquals("Ein Kundenkonto erstellen", registerHeadline.getText()); //Checks if H1 is correct
+        Assertions.assertEquals("Ein Kundenkonto erstellen", registerHeadline.getText()); //Verify H1
         driver.findElement(By.id("firstname")).sendKeys("T"); //First name field
         driver.findElement(By.id("lastname")).sendKeys("T"); //Last name field
         driver.findElement(By.id("email_address")).sendKeys(""); //Email field
