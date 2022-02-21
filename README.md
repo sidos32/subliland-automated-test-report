@@ -1,6 +1,6 @@
 <div align="center">
   
-# Automated test for subliland.de with CI and Test report generator 
+# Automated tests for subliland.de with CI and Test report generator 
 ![example workflow](https://github.com/sidos32/subliland-automated-test-report/actions/workflows/test-automation.yml/badge.svg)
 [![Tests](https://github.com/sidos32/subliland-automated-test-report/actions/workflows/tests.yml/badge.svg)](https://github.com/sidos32/subliland-automated-test-report/actions/workflows/tests.yml)
 [![issues - subliland-automated-test-report](https://img.shields.io/github/issues/sidos32/subliland-automated-test-report)](https://github.com/sidos32/subliland-automated-test-report/issues)
