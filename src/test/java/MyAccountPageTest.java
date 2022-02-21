@@ -33,11 +33,10 @@ public class MyAccountPageTest {
  void afterEach() {
      System.out.println("Closing chrome browser instance");
      driver.quit();
+
  }
 
-    @Test
-    @DisplayName("Can successfully edit account information and logout")
-    void editAccountInfoWithValidCredentials() {
+    void login(){
         driver.findElement(By.cssSelector(".as-js-optin.as-oil__btn.as-oil__btn-optin")).click(); //Accept cookies
         driver.findElement(By.cssSelector(".db_account [href]")).click(); // My profile click;
         driver.findElement(By.xpath("/html//input[@id='login-email_address']")).sendKeys(EMAIL); //Login email
@@ -45,35 +44,44 @@ public class MyAccountPageTest {
         driver.findElement(By.cssSelector(".login-buttons > input")).click(); //Sign in button click
         WebElement myProfileHeadline = driver.findElement(By.cssSelector("h1"));
         Assertions.assertEquals("Ihre persönliche Seite", myProfileHeadline.getText()); //Verify H1
-        driver.findElement(By.cssSelector("a[title='Kontodaten bearbeiten']")).click(); //Personal information click
-        WebElement personalInfoHeadline = driver.findElement(By.cssSelector("h1"));
-        Assertions.assertEquals("Ihre persönliche Daten ändern", personalInfoHeadline.getText()); //Verify H1
-        Random r = new Random();
-        char ch = (char)(r.nextInt(26) + 'a'); //Generates random character
-        driver.findElement(By.cssSelector("input#firstname")).sendKeys("Test" + ch); //First name
-        driver.findElement(By.cssSelector("input#lastname")).sendKeys("Test" + ch); //Last name
-        driver.findElement(By.cssSelector("input#email_address")).clear(); //Email clear
-        driver.findElement(By.cssSelector("input#email_address")).sendKeys(EMAIL); //Email
-        driver.findElement(By.cssSelector("input#telephone")).sendKeys("123456" + r.nextInt(10)); // Phone number
-        driver.findElement(By.cssSelector("button[title='Speichern']")).click(); // Click save
-        WebElement successMessage = driver.findElement(By.cssSelector(".alert.alert-success"));
-        Assertions.assertEquals("Ihr Konto wurde erfolgreich aktualisiert.", successMessage.getText()); // Success message
+    }
+
+    void logout(){
         driver.findElement(By.cssSelector("div#topbar-container  nav .dropdown-toggle")).click(); // My profile
         driver.findElement(By.cssSelector(".navbar-right [href='https://www.subliland.de/de/logoff.php']")).click(); // Logout
         WebElement byeMessage = driver.findElement(By.cssSelector("h1"));
         Assertions.assertEquals("Auf Wiedersehen!", byeMessage.getText()); // Goodbye message
     }
 
+
+
+    @Test
+    @DisplayName("Can successfully edit account information and logout")
+    void editAccountInfoWithValidCredentials() {
+        login();
+        driver.findElement(By.cssSelector("a[title='Kontodaten bearbeiten']")).click(); //Personal information click
+        WebElement personalInfoHeadline = driver.findElement(By.cssSelector("h1"));
+        Assertions.assertEquals("Ihre persönliche Daten ändern", personalInfoHeadline.getText()); //Verify H1
+        Random r = new Random();
+        char ch = (char)(r.nextInt(26) + 'a'); //Generates random character
+        driver.findElement(By.cssSelector("input#firstname")).clear();
+        driver.findElement(By.cssSelector("input#firstname")).sendKeys("Test" + ch); //First name
+        driver.findElement(By.cssSelector("input#lastname")).clear();
+        driver.findElement(By.cssSelector("input#lastname")).sendKeys("Test" + ch); //Last name
+        driver.findElement(By.cssSelector("input#email_address")).clear(); //Email clear
+        driver.findElement(By.cssSelector("input#email_address")).sendKeys(EMAIL); //Email
+        driver.findElement(By.cssSelector("input#telephone")).clear();
+        driver.findElement(By.cssSelector("input#telephone")).sendKeys("123456" + r.nextInt(10)); // Phone number
+        driver.findElement(By.cssSelector("button[title='Speichern']")).click(); // Click save
+        WebElement successMessage = driver.findElement(By.cssSelector(".alert.alert-success"));
+        Assertions.assertEquals("Ihr Konto wurde erfolgreich aktualisiert.", successMessage.getText()); // Success message
+       logout();
+    }
+
     @Test
     @DisplayName("Can successfully edit address book add address,delete and logout")
     void editAddressBookInfoWithValidCredentials() {
-        driver.findElement(By.cssSelector(".as-js-optin.as-oil__btn.as-oil__btn-optin")).click(); //Accept cookies
-        driver.findElement(By.cssSelector(".db_account [href]")).click(); // My profile click;
-        driver.findElement(By.xpath("/html//input[@id='login-email_address']")).sendKeys(EMAIL); //Login email
-        driver.findElement(By.xpath("/html//input[@id='login-password']")).sendKeys(PASSWORD); //Login password
-        driver.findElement(By.cssSelector(".login-buttons > input")).click(); //Sign in button click
-        WebElement myProfileHeadline = driver.findElement(By.cssSelector("h1"));
-        Assertions.assertEquals("Ihre persönliche Seite", myProfileHeadline.getText()); //Verify H1
+        login();
         driver.findElement(By.cssSelector("a[title='Adressbuch bearbeiten']")).click(); //Address book
         WebElement addressBookHeadline = driver.findElement(By.cssSelector("h1"));
         Assertions.assertEquals("Mein persönliches Adressbuch", addressBookHeadline.getText()); //Verify H1
@@ -93,23 +101,14 @@ public class MyAccountPageTest {
         driver.findElement(By.cssSelector("a[title='Löschen']")).click(); //Confirm delete
         WebElement successDeleteMessage = driver.findElement(By.cssSelector(".alert.alert-success"));
         Assertions.assertEquals("Der ausgewählte Eintrag wurde erfolgreich gelöscht.", successDeleteMessage.getText()); //Success delete message
-        driver.findElement(By.cssSelector("div#topbar-container  nav .dropdown-toggle")).click(); // My profile
-        driver.findElement(By.cssSelector(".navbar-right [href='https://www.subliland.de/de/logoff.php']")).click(); // Logout
-        WebElement byeMessage = driver.findElement(By.cssSelector("h1"));
-        Assertions.assertEquals("Auf Wiedersehen!", byeMessage.getText()); // Goodbye message
+       logout();
     }
 
 
     @Test
     @DisplayName("Can successfully change password and logout")
     void editPassword() {
-        driver.findElement(By.cssSelector(".as-js-optin.as-oil__btn.as-oil__btn-optin")).click(); //Accept cookies
-        driver.findElement(By.cssSelector(".db_account [href]")).click(); // My profile click;
-        driver.findElement(By.xpath("/html//input[@id='login-email_address']")).sendKeys(EMAIL); //Login email
-        driver.findElement(By.xpath("/html//input[@id='login-password']")).sendKeys(PASSWORD); //Login password
-        driver.findElement(By.cssSelector(".login-buttons > input")).click(); //Sign in button click
-        WebElement myProfileHeadline = driver.findElement(By.cssSelector("h1"));
-        Assertions.assertEquals("Ihre persönliche Seite", myProfileHeadline.getText()); //Verify H1
+        login();
         driver.findElement(By.cssSelector("a[title='Passwort ändern']")).click(); //Password change
         WebElement myPassHeadline = driver.findElement(By.cssSelector("h1"));
         Assertions.assertEquals("Mein Passwort", myPassHeadline.getText()); //Verify H1
@@ -119,23 +118,14 @@ public class MyAccountPageTest {
         driver.findElement(By.cssSelector("button[title='Senden']")).click(); //Save
         WebElement successMessage = driver.findElement(By.cssSelector(".alert.alert-success"));
         Assertions.assertEquals("Ihr Passwort wurde erfolgreich geändert!", successMessage.getText()); // Success message
-        driver.findElement(By.cssSelector("div#topbar-container  nav .dropdown-toggle")).click(); // My profile
-        driver.findElement(By.cssSelector(".navbar-right [href='https://www.subliland.de/de/logoff.php']")).click(); // Logout
-        WebElement byeMessage = driver.findElement(By.cssSelector("h1"));
-        Assertions.assertEquals("Auf Wiedersehen!", byeMessage.getText()); // Goodbye message
+       logout();
     }
 
 
     @Test
     @DisplayName("Can successfully request account deletion and logout")
     void accountDeletionRequest() {
-        driver.findElement(By.cssSelector(".as-js-optin.as-oil__btn.as-oil__btn-optin")).click(); //Accept cookies
-        driver.findElement(By.cssSelector(".db_account [href]")).click(); // My profile click;
-        driver.findElement(By.xpath("/html//input[@id='login-email_address']")).sendKeys(EMAIL); //Login email
-        driver.findElement(By.xpath("/html//input[@id='login-password']")).sendKeys(PASSWORD); //Login password
-        driver.findElement(By.cssSelector(".login-buttons > input")).click(); //Sign in button click
-        WebElement myProfileHeadline = driver.findElement(By.cssSelector("h1"));
-        Assertions.assertEquals("Ihre persönliche Seite", myProfileHeadline.getText()); //Verify H1
+        login();
         driver.findElement(By.cssSelector("a[title='Account löschen']")).click(); //Account delete request
         WebElement accountDeleteHeadline = driver.findElement(By.cssSelector("h1"));
         Assertions.assertEquals("Konto löschen", accountDeleteHeadline.getText()); //Verify H1
@@ -143,9 +133,6 @@ public class MyAccountPageTest {
         driver.findElement(By.cssSelector("button[title='Senden']")).click(); // Send request
         WebElement successMessage = driver.findElement(By.cssSelector(".alert.alert-danger"));
         Assertions.assertEquals("Der Shopbetreiber wurde über die Bitte zur Kontolöschung informiert.", successMessage.getText()); // Success message
-        driver.findElement(By.cssSelector("div#topbar-container  nav .dropdown-toggle")).click(); // My profile
-        driver.findElement(By.cssSelector(".navbar-right [href='https://www.subliland.de/de/logoff.php']")).click(); // Logout
-        WebElement byeMessage = driver.findElement(By.cssSelector("h1"));
-        Assertions.assertEquals("Auf Wiedersehen!", byeMessage.getText()); // Goodbye message
+       logout();
     }
 }

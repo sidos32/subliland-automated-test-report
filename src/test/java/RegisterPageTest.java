@@ -32,6 +32,14 @@ public class RegisterPageTest {
       driver.quit();
   }
 
+    void logout(){
+        driver.findElement(By.cssSelector("div#topbar-container  nav .dropdown-toggle")).click(); // My profile
+        driver.findElement(By.cssSelector(".navbar-right [href='https://www.subliland.de/de/logoff.php']")).click(); // Logout
+        WebElement byeMessage = driver.findElement(By.cssSelector("h1"));
+        Assertions.assertEquals("Auf Wiedersehen!", byeMessage.getText()); // Goodbye message
+    }
+
+
     @Test
     @DisplayName("Can register user with valid credentials")
     void registerWithValidCredentials() {
@@ -54,15 +62,12 @@ public class RegisterPageTest {
         driver.findElement(By.cssSelector("button[title='Senden']")).click(); //Send register form
         WebElement alertMessage = driver.findElement(By.cssSelector(".main-inside .cart-empty .alert-info"));
         Assertions.assertEquals("Sie haben noch nichts in Ihrem Warenkorb.", alertMessage.getText()); // Confirmation message
-        driver.findElement(By.cssSelector("div#topbar-container  nav .dropdown-toggle")).click(); // My profile
-        driver.findElement(By.cssSelector(".navbar-right [href='https://www.subliland.de/de/logoff.php']")).click(); // Logout
-        WebElement byeMessage = driver.findElement(By.cssSelector("h1"));
-        Assertions.assertEquals("Auf Wiedersehen!", byeMessage.getText()); // Goodbye message
+       logout();
     }
 
     @Test
-    @DisplayName("Register user with invalid credentials")
-    void registerWithInvalidCredentials() {
+    @DisplayName("Try to register user with invalid credentials")
+    void tryToRegisterUserWithInvalidCredentials() {
         driver.findElement(By.cssSelector(".as-js-optin.as-oil__btn.as-oil__btn-optin")).click(); //Accept cookies
         driver.findElement(By.cssSelector(".db_account [href]")).click(); // My profile click;
         driver.findElement(By.cssSelector(".row.row-login .btn.btn-block.btn-default")).click(); //Register button click

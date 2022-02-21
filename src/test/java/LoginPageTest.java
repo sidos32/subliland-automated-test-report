@@ -33,9 +33,7 @@ public class LoginPageTest {
        driver.quit();
    }
 
-    @Test
-    @DisplayName("Can login successfully with valid credentials and logout")
-    void loginWithValidCredentials() {
+    void login(){
         driver.findElement(By.cssSelector(".as-js-optin.as-oil__btn.as-oil__btn-optin")).click(); //Accept cookies
         driver.findElement(By.cssSelector(".db_account [href]")).click(); // My profile click;
         driver.findElement(By.xpath("/html//input[@id='login-email_address']")).sendKeys(EMAIL); //Login email
@@ -43,15 +41,28 @@ public class LoginPageTest {
         driver.findElement(By.cssSelector(".login-buttons > input")).click(); //Sign in button click
         WebElement myProfileHeadline = driver.findElement(By.cssSelector("h1"));
         Assertions.assertEquals("Ihre persönliche Seite", myProfileHeadline.getText()); //Verify H1
+    }
+
+    void logout(){
         driver.findElement(By.cssSelector("div#topbar-container  nav .dropdown-toggle")).click(); // My profile
         driver.findElement(By.cssSelector(".navbar-right [href='https://www.subliland.de/de/logoff.php']")).click(); // Logout
         WebElement byeMessage = driver.findElement(By.cssSelector("h1"));
         Assertions.assertEquals("Auf Wiedersehen!", byeMessage.getText()); // Goodbye message
     }
 
+
+
     @Test
-    @DisplayName("Cannot login with invalid credentials")
-    void loginWithInvalidCredentials() {
+    @DisplayName("Can login successfully with valid credentials and logout")
+    void loginWithValidCredentials() {
+        login();
+        logout();
+
+    }
+
+    @Test
+    @DisplayName("Try to login with invalid credentials")
+    void tryToLoginWithInvalidCredentials() {
         driver.findElement(By.cssSelector(".as-js-optin.as-oil__btn.as-oil__btn-optin")).click(); //Accept cookies
         driver.findElement(By.cssSelector(".db_account [href]")).click(); // My profile click;
         driver.findElement(By.xpath("/html//input[@id='login-email_address']")).sendKeys("notExistingUser@gmail.com"); //Login email
@@ -62,8 +73,8 @@ public class LoginPageTest {
     }
 
     @Test
-    @DisplayName("Cannot login with correct Email and invalid password")
-    void loginWithCorrectEmailAndInvalidPass() {
+    @DisplayName("Try to login with correct Email and invalid password")
+    void tryToLoginWithCorrectEmailAndInvalidPass() {
         driver.findElement(By.cssSelector(".as-js-optin.as-oil__btn.as-oil__btn-optin")).click(); //Accept cookies
         driver.findElement(By.cssSelector(".db_account [href]")).click(); // My profile click;
         driver.findElement(By.xpath("/html//input[@id='login-email_address']")).sendKeys(EMAIL); //Login email
@@ -72,5 +83,10 @@ public class LoginPageTest {
         WebElement errorMessage = driver.findElement(By.cssSelector("form#login > .alert.alert-danger"));
         Assertions.assertEquals("FEHLER: Keine Übereinstimmung der eingegebenen \"E-Mail-Adresse\" und/oder dem \"Passwort\".", errorMessage.getText()); //Verify error message
     }
+
+
+
+
+
 
 }
