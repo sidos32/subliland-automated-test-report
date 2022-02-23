@@ -7,14 +7,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class RegisterPageTest {
-    private static final String BASE_URL = "https://subliland.de/";
     private static final String EMAIL = "tessst_199@gmail.com";
+    Config config = new Config();
     private WebDriver driver = null;
 
     @BeforeAll
     static void beforeAll() {
         WebDriverManager.chromedriver().setup();
     }
+
     @BeforeEach
     void beforeEach(TestInfo testInfo) {
         System.out.println("Starting test with name:" + testInfo.getDisplayName());
@@ -22,17 +23,17 @@ public class RegisterPageTest {
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(true);
         driver = new ChromeDriver(options);
-        System.out.println("Navigating to:" + BASE_URL);
-        driver.navigate().to(BASE_URL);
+        System.out.println("Navigating to:" + config.getBaseUrl());
+        driver.navigate().to(config.getBaseUrl());
     }
 
-  @AfterEach
-  void afterEach() {
-      System.out.println("Closing chrome browser instance");
-      driver.quit();
-  }
+    @AfterEach
+    void afterEach() {
+        System.out.println("Closing chrome browser instance");
+        driver.quit();
+    }
 
-    void logout(){
+    void logout() {
         driver.findElement(By.cssSelector("div#topbar-container  nav .dropdown-toggle")).click(); // My profile
         driver.findElement(By.cssSelector(".navbar-right [href='https://www.subliland.de/de/logoff.php']")).click(); // Logout
         WebElement byeMessage = driver.findElement(By.cssSelector("h1"));
@@ -62,7 +63,7 @@ public class RegisterPageTest {
         driver.findElement(By.cssSelector("button[title='Senden']")).click(); //Send register form
         WebElement alertMessage = driver.findElement(By.cssSelector(".main-inside .cart-empty .alert-info"));
         Assertions.assertEquals("Sie haben noch nichts in Ihrem Warenkorb.", alertMessage.getText()); // Confirmation message
-       logout();
+        logout();
     }
 
     @Test
