@@ -8,7 +8,7 @@
   
  
 
- [![test report - results](https://img.shields.io/badge/test_report-results-2ea44f?style=for-the-badge)](https://github.com/sidos32/subliland-automated-test-report/runs/5271343699?check_suite_focus=true)
+ [![test report - results](https://img.shields.io/badge/test_report-results-2ea44f?style=for-the-badge)](https://github.com/sidos32/subliland-automated-test-report/runs/5301900006?check_suite_focus=true)
  [![website - subliland](https://img.shields.io/badge/website-subliland-2ea44f?style=for-the-badge)](https://subliland.de)
 </div>
 
