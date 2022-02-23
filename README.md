@@ -1,6 +1,6 @@
 <div align="center">
   
-# Automated test for subliland.de with CI and Test report generator 
+# Automated tests for subliland.de with CI and Test report generator 
 ![example workflow](https://github.com/sidos32/subliland-automated-test-report/actions/workflows/test-automation.yml/badge.svg)
 [![Tests](https://github.com/sidos32/subliland-automated-test-report/actions/workflows/tests.yml/badge.svg)](https://github.com/sidos32/subliland-automated-test-report/actions/workflows/tests.yml)
 [![issues - subliland-automated-test-report](https://img.shields.io/github/issues/sidos32/subliland-automated-test-report)](https://github.com/sidos32/subliland-automated-test-report/issues)
@@ -8,13 +8,13 @@
   
  
 
- [![test report - results](https://img.shields.io/badge/test_report-results-2ea44f?style=for-the-badge)](https://github.com/sidos32/subliland-automated-test-report/runs/5254534719?check_suite_focus=true)
+ [![test report - results](https://img.shields.io/badge/test_report-results-2ea44f?style=for-the-badge)](https://github.com/sidos32/subliland-automated-test-report/runs/5271343699?check_suite_focus=true)
  [![website - subliland](https://img.shields.io/badge/website-subliland-2ea44f?style=for-the-badge)](https://subliland.de)
 </div>
 
 ---
 
-  Tools and repos used:
+  Tools, repos and dependencies used:
   
   - <a href="https://www.jetbrains.com/idea/">InteliJ</a>
   - <a href="https://desktop.github.com/">GitHub Desktop</a>
